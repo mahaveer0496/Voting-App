@@ -35,6 +35,15 @@ const reducer = (state = initialState, action) => {
     case type.LOG_USER_OUT:
       return authUtil(state, false, false, '');
 
+    case type.REGISTER_USER:
+      return authUtil(state, true, false, '');
+
+    case type.REGISTER_USER_SUCCESS:
+      return authUtil(state, false, true, action.email);
+
+    case type.REGISTER_USER_FAIL:
+      return authUtil(state, false, false, '');
+
     default:
       return state;
   }

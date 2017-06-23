@@ -10,8 +10,12 @@ const LoginForm = ({ logUser, isAuthenticated, history }) => {
   let password = null;
   const submitHandler = (event) => {
     event.preventDefault();
-    console.log(`before ${isAuthenticated}`);
-    logUser(email.value, password.value, history);
+    logUser(email.value, password.value)
+    .then((data) => {
+      console.log(data);
+      history.replace('/secret');
+    })
+    .catch((err) => { console.log(err); });
   };
 
   return (
@@ -29,7 +33,7 @@ const LoginForm = ({ logUser, isAuthenticated, history }) => {
           </div>
 
           <div className="form-group">
-            <input type="submit" className="btn btn-primary" aria-describedby="helpId" value="Login" />
+            <input type="submit" className="btn btn-primary" value="Login" />
           </div>
         </div>
       </div>
@@ -40,6 +44,6 @@ const LoginForm = ({ logUser, isAuthenticated, history }) => {
 const mapStateToProps = ({ isAuthenticated }) => ({ isAuthenticated });
 
 const mapDispatchToProps = dispatch => ({
-  logUser: (email, password, history) => dispatch(logUser(email, password, history)),
+  logUser: (email, password) => dispatch(logUser(email, password)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

@@ -1,21 +1,18 @@
 import React from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { register } from './../redux/actions/regsiterUser';
 
-const RegisterForm = ({ history }) => {
+const RegisterForm = ({ register, history }) => {
   let email = null;
   let password = null;
   const submitHandler = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:3000/api/user/register', {
-      email: email.value,
-      password: password.value,
-    }).then((res) => {
-      console.log(res.data);
-      if (res.data.email) {
-        history.replace('/secret');
-      }
-      console.log('faileterede');
-    });
+    register(email.value, password.value)
+    .then((data) => {
+      console.log(data);
+      history.replace('/secret');
+    })
+    .catch((err) => { console.log(err); });
   };
   return (
     <form className="container" onSubmit={submitHandler}>
@@ -40,4 +37,9 @@ const RegisterForm = ({ history }) => {
   );
 };
 
-export default RegisterForm;
+
+const mapDispatchToProps = dispatch => ({
+  register: (email, password) => dispatch(register(email, password)),
+});
+
+export default connect(null, mapDispatchToProps)(RegisterForm);
