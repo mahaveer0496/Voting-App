@@ -16,6 +16,7 @@ import { getUser } from './../redux/actions/getUser';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.props.getUser();
   }
 
   render() {

@@ -14,14 +14,17 @@ export const logUserFail = () => ({
   type: LOG_USER_FAIL,
 });
 
-export const logUser = (email, password) => (dispatch, getState) => {
+export const logUser = (email, password, history) => (dispatch, getState) => {
   dispatch(logUserIn());
   axios.post('http://localhost:3000/api/user/login', {
     email,
     password,
   }).then((res) => {
     console.log(res.data);
-    if (res.data.email) return dispatch(logUserSuccess(res.data.email));
+    if (res.data.email) {
+      dispatch(logUserSuccess(res.data.email));
+      return history.replace('/secret');
+    }
     return dispatch(logUserFail());
   });
 };
