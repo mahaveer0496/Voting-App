@@ -14,3 +14,10 @@ export const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL';
 
 export const LOG_USER_OUT = 'LOG_USER_OUT';
 
+export const ADD_POLL = 'ADD_POLL';
+export const ADD_POLL_SUCCESS = 'ADD_POLL_SUCCESS';
+export const ADD_POLL_FAIL = 'ADD_POLL_FAIL';
+
+export const ADD_POLL_TOPIC = 'ADD_POLL_TOPIC';
+export const ADD_POLL_TOPIC_SUCCESS = 'ADD_POLL_TOPIC_SUCCESS';
+export const ADD_POLL_TOPIC_FAIL = 'ADD_POLL_TOPIC_FAIL';

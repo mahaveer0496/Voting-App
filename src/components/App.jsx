@@ -16,21 +16,23 @@ import { getUser } from './../redux/actions/getUser';
 class App extends Component {
   constructor(props) {
     super(props);
+  }
+  componentDidMount() {
     this.props.getUser();
   }
 
   render() {
-    const { isAuthenticated, email } = this.props;
+    const { isAuthenticated } = this.props;
     return (
       <div>
         <Navigation />
         <Switch>
-          <Route exact path="/" component={PollAndItsForm} />
-          <Route path="/poll/:pollId" component={TopicsAndItsForm} />
+          <Route exact path="/" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
+          <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
           {isAuthenticated ? <Route path="/secret" component={Secret} /> : <Redirect to="/" />}
-          {/*<Route path="/secret" component={Secret} />*/}
+          {/* <Route path="/secret" component={Secret} />*/}
         </Switch>
       </div>
     );

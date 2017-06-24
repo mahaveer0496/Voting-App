@@ -13,7 +13,7 @@ pollRoutes.route('/')
     const { pollTitle } = req.body;
     Poll.create({
       poll: pollTitle,
-    }).then(res.redirect('/api'));
+    }).then(res.redirect('/api/poll'));
   });
 
 

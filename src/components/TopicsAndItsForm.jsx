@@ -3,6 +3,7 @@ import axios from 'axios';
 import AddTopicForm from './AddTopicForm';
 import PollTopics from './PollTopics';
 
+import { withRouter } from 'react-router-dom';
 class TopicsAndItsForms extends Component {
   constructor(props) {
     super(props);
@@ -22,7 +23,6 @@ class TopicsAndItsForms extends Component {
   increaseVotes(pollId, topicId) {
     // console.log(pollId, topicId);
     axios.post(`http://localhost:3000/api/poll/${pollId}/${topicId}`).then((res) => {
-      console.log(JSON.stringify(res.data, null, 2));
       this.setState({
         topics: res.data.topics,
       });
@@ -36,19 +36,19 @@ class TopicsAndItsForms extends Component {
       this.setState({
         topics: res.data.topics,
       });
-      console.log(JSON.stringify(res.data, null, 2));
     });
   }
   render() {
     const { pollId } = this.props.match.params;
     const { topics } = this.state;
+    const { isAuthenticated } = this.props;
     // console.log(pollId);
     return (
       <div>
-        <AddTopicForm
+        {isAuthenticated && <AddTopicForm
           pollId={pollId}
           addNewTopic={this.addNewTopic}
-        />
+        />}
         <PollTopics
           topics={topics}
           pollId={pollId}
@@ -59,4 +59,4 @@ class TopicsAndItsForms extends Component {
   }
 }
 
-export default TopicsAndItsForms;
+export default withRouter(TopicsAndItsForms);

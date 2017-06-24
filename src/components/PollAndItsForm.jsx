@@ -25,9 +25,10 @@ class PollAndItsForm extends Component {
 
   render() {
     const { polls } = this.state;
+    const { isAuthenticated } = this.props;
     return (
       <div>
-        <AddPollForm handleUpdate={this.handleUpdate} />
+        {isAuthenticated && <AddPollForm handleUpdate={this.handleUpdate} />}
         <PollTitles polls={polls} />
       </div>
     );
