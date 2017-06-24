@@ -1,19 +1,27 @@
 const express = require('express');
 const Poll = require('./../models/PollModel');
+const User = require('./../models/UserModel');
 
 const pollRoutes = express.Router();
 
 pollRoutes.route('/')
   .get((req, res) => {
-    Poll.find({}).then((data) => {
-      res.send(data);
+    Poll.find({}).populate('createdBy').exec((error, poll) => {
+      if (error) return res.send(error);
+      return res.send(poll);
     });
   })
   .post((req, res) => {
-    const { pollTitle } = req.body;
+    const { pollTitle, createdBy } = req.body;
     Poll.create({
-      poll: pollTitle,
-    }).then(res.redirect('/api/poll'));
+      pollTitle,
+      createdBy,
+    }).then(() => {
+      Poll.find({ pollTitle }).populate('createdBy').exec((error, poll) => {
+        if (error) return res.send(error);
+        return res.send(poll);
+      });
+    });
   });
 
 

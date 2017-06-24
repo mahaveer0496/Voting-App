@@ -22,9 +22,11 @@ module.exports = (passport) => {
   passport.use('local-register', new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password',
-  }, (email, password, done) => {
+    passReqToCallback: true,
+  }, (req, email, password, done) => {
+    console.log(req.body.userName, email, password);
     bcrypt.hash(password, 10, (err, hash) => {
-      User.create({ email, password: hash })
+      User.create({ userName: req.body.userName, email, password: hash })
       .then(user => done(null, user, { message: 'Registration success' }))
       .catch(err => done(null, false, { message: 'User already exists' }));
     });
