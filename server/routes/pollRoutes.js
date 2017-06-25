@@ -51,10 +51,13 @@ pollRoutes.route('/:pollId')
     User.findById(req.user._id)
       .then((user) => {
         Poll.findOneAndRemove({ _id: pollId })
-          .then((data) => {
+          .then(() => {
             user.polls = user.polls.filter(id => id != pollId);
             user.save();
-            res.json({ message: `Removed poll ${data.pollTitle}` });
+            User.findById(req.user._id).populate('polls').exec((error, user) => {
+              if (error) return res.send(error);
+              return res.send(user);
+            });
           })
           .catch(() => res.json({ message: 'Poll with given title does not exist' }));
       })

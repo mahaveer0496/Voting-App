@@ -8,7 +8,7 @@ import TopicsAndItsForm from './TopicsAndItsForm';
 import Navigation from './Navbar';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
-import Secret from './Secret';
+import Dashboard from './Dashboard';
 
 // actions-----
 import { getUser } from './../redux/actions/getUser';
@@ -25,14 +25,13 @@ class App extends Component {
     const { isAuthenticated } = this.props;
     return (
       <div>
-        <Navigation />
+        <Navigation isAuthenticated={isAuthenticated} />
         <Switch>
           <Route exact path="/" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
           <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />
-          {isAuthenticated ? <Route path="/secret" component={Secret} /> : <Redirect to="/" />}
-          {/* <Route path="/secret" component={Secret} />*/}
+          {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
         </Switch>
       </div>
     );

@@ -12,8 +12,7 @@ const LoginForm = ({ logUser, isAuthenticated, history }) => {
     event.preventDefault();
     logUser(email.value, password.value)
     .then((data) => {
-      console.log(data);
-      history.replace('/secret');
+      history.replace('/dashboard');
     })
     .catch((err) => { console.log(err); });
   };

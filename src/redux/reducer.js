@@ -10,6 +10,7 @@ const initialState = {
   fetchingUser: false,
   isAuthenticated: false,
   email: '',
+  polls: [],
 };
 
 const reducer = (state = initialState, action) => {

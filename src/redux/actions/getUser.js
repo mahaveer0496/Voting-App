@@ -17,7 +17,6 @@ export const authorizeFail = () => ({
 export const getUser = () => (dispatch, getState) => {
   dispatch(authorizeUser());
   axios.get('http://localhost:3000/api/user/checkAuth').then((res) => {
-    console.log(res.data);
     if (res.data.email) return dispatch(authorizeSuccess(res.data.email));
     return dispatch(authorizeFail());
   });

@@ -10,7 +10,7 @@ const RegisterForm = ({ register, history }) => {
     register(email.value, password.value)
     .then((data) => {
       console.log(data);
-      history.replace('/secret');
+      history.replace('/dashboard');
     })
     .catch((err) => { console.log(err); });
   };
