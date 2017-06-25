@@ -16,10 +16,11 @@ pollRoutes.route('/')
     Poll.create({
       pollTitle,
       createdBy,
-    }).then(() => {
-      Poll.find({ pollTitle }).populate('createdBy').exec((error, poll) => {
-        if (error) return res.send(error);
-        return res.send(poll);
+    }).then((poll) => {
+      User.findById(createdBy).then((user) => {
+        user.polls.push(poll._id);
+        user.save();
+        res.send('success');
       });
     });
   });

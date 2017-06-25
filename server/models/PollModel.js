@@ -6,10 +6,7 @@ const pollSchema = new mongoose.Schema({
     title: String,
     votes: Number,
   }],
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-  },
+  createdBy: String,
 });
 
 module.exports = mongoose.model('Poll', pollSchema);
