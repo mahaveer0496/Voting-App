@@ -54,10 +54,7 @@ pollRoutes.route('/:pollId')
           .then(() => {
             user.polls = user.polls.filter(id => id != pollId);
             user.save();
-            User.findById(req.user._id).populate('polls').exec((error, user) => {
-              if (error) return res.send(error);
-              return res.send(user);
-            });
+            return res.redirect('/api/user/userPolls');
           })
           .catch(() => res.json({ message: 'Poll with given title does not exist' }));
       })
