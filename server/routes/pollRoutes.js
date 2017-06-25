@@ -1,4 +1,5 @@
 const express = require('express');
+const authMiddleware = require('./../authMiddleware');
 const Poll = require('./../models/PollModel');
 const User = require('./../models/UserModel');
 
@@ -6,21 +7,21 @@ const pollRoutes = express.Router();
 
 pollRoutes.route('/')
   .get((req, res) => {
-    Poll.find({}).populate('createdBy').exec((error, poll) => {
-      if (error) return res.send(error);
-      return res.send(poll);
+    Poll.find({}).then((poll) => {
+      res.send(poll);
     });
   })
-  .post((req, res) => {
-    const { pollTitle, createdBy } = req.body;
+  .post(authMiddleware, (req, res) => {
+    const { pollTitle } = req.body;
+    const { email } = req.user;
     Poll.create({
       pollTitle,
-      createdBy,
+      createdBy: email,
     }).then((poll) => {
-      User.findById(createdBy).then((user) => {
+      User.findOne({ email }).then((user) => {
         user.polls.push(poll._id);
         user.save();
-        res.send('success');
+        res.redirect('/api/poll');
       });
     });
   });
@@ -33,7 +34,7 @@ pollRoutes.route('/:pollId')
       res.send(poll);
     });
   })
-  .post((req, res) => {
+  .post(authMiddleware, (req, res) => {
     const { pollId } = req.params;
     const { title } = req.body;
     Poll.findById(pollId).then((poll) => {
@@ -44,6 +45,20 @@ pollRoutes.route('/:pollId')
       poll.save();
       res.send(poll);
     });
+  })
+  .delete(authMiddleware, (req, res) => {
+    const { pollId } = req.params;
+    User.findById(req.user._id)
+      .then((user) => {
+        Poll.findOneAndRemove({ _id: pollId })
+          .then((data) => {
+            user.polls = user.polls.filter(id => id != pollId);
+            user.save();
+            res.json({ message: `Removed poll ${data.pollTitle}` });
+          })
+          .catch(() => res.json({ message: 'Poll with given title does not exist' }));
+      })
+      .catch(() => res.json({ message: 'User does not exist' }));
   });
 
 pollRoutes.route('/:pollId/:topicId')

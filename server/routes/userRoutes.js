@@ -1,9 +1,9 @@
 const express = require('express');
 const passport = require('passport');
+const authMiddleware = require('./../authMiddleware');
 const User = require('./../models/UserModel');
 
 const userRoutes = express.Router();
-
 userRoutes.route('/')
   .get((req, res) => {
     User.find({}).populate('polls').exec((error, user) => {
@@ -44,10 +44,7 @@ userRoutes.route('/login')
 });
 
 userRoutes.route('/secret')
-  .get((req, res, next) => {
-    if (req.isAuthenticated()) return next();
-    return res.send('unauthenticated');
-  }, (req, res) => {
+  .get(authMiddleware, (req, res) => {
     res.send('shhhh! this is secret page');
   });
 
