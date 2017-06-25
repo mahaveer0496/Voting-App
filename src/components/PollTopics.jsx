@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import { Link } from 'react-router-dom';
 
-const PollTopics = ({ topics, increaseVotes, pollId }) => {
+const PollTopics = ({ pollTopics, increaseVotes, pollId }) => {
   return (
     <div>
-      {topics.map(topic => (
+      {pollTopics.map(topic => (
         <div key={topic._id}>
           <span>{topic.title}</span>
           <progress value={topic.votes} max={50} key={topic._id} />
@@ -19,7 +19,7 @@ const PollTopics = ({ topics, increaseVotes, pollId }) => {
 };
 
 PollTopics.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.shape({
+  pollTopics: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string.isRequired,
     votes: PropTypes.number.isRequired,
   })).isRequired,

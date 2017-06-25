@@ -8,12 +8,12 @@ class TopicsAndItsForms extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      topics: [],
+      pollTopics: [],
     };
     axios.get(`http://localhost:3000/api/poll/${this.props.match.params.pollId}`).then((res) => {
       // console.log(res.data.poll);
       this.setState({
-        topics: res.data.topics,
+        pollTopics: res.data.pollTopics,
       });
     });
     this.increaseVotes = this.increaseVotes.bind(this);
@@ -24,7 +24,7 @@ class TopicsAndItsForms extends Component {
     // console.log(pollId, topicId);
     axios.post(`http://localhost:3000/api/poll/${pollId}/${topicId}`).then((res) => {
       this.setState({
-        topics: res.data.topics,
+        pollTopics: res.data.pollTopics,
       });
     });
   }
@@ -34,13 +34,13 @@ class TopicsAndItsForms extends Component {
       title: topicTitle,
     }).then((res) => {
       this.setState({
-        topics: res.data.topics,
+        pollTopics: res.data.pollTopics,
       });
     });
   }
   render() {
     const { pollId } = this.props.match.params;
-    const { topics } = this.state;
+    const { pollTopics } = this.state;
     const { isAuthenticated } = this.props;
     // console.log(pollId);
     return (
@@ -50,7 +50,7 @@ class TopicsAndItsForms extends Component {
           addNewTopic={this.addNewTopic}
         />}
         <PollTopics
-          topics={topics}
+          pollTopics={pollTopics}
           pollId={pollId}
           increaseVotes={this.increaseVotes}
         />

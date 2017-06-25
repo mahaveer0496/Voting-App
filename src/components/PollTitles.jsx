@@ -5,7 +5,7 @@ const PollTitles = ({polls}) => {
   return (
     <div>
       {polls.map(poll => (
-        <p key={poll._id}>{poll.poll} <Link to={`/poll/${poll._id}`} >Go here!</Link></p>
+        <p key={poll._id}>{poll.pollTitle} <Link to={`/poll/${poll._id}`} >Go here!</Link></p>
       ))}
     </div>
   );
