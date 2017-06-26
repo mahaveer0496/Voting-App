@@ -18,15 +18,14 @@ class App extends Component {
     super(props);
   }
   componentDidMount() {
-    axios.get('https://ipinfo.io/json').then((res) => {
-      console.log(res.data.ip);
-    });
+    // axios.get('https://ipinfo.io/json').then((res) => {
+    //   console.log(res.data.ip);
+    // });
     this.props.getUser();
   }
 
   render() {
     const { isAuthenticated } = this.props;
-    console.log(isAuthenticated);
     return (
       <div>
         <Navigation isAuthenticated={isAuthenticated} />

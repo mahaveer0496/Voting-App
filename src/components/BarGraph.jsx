@@ -1,15 +1,15 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarGraph = () => {
-  console.log('bar');
+const BarGraph = ({ labels, data }) => {
+  // console.log('bar');
   return (
     <Bar
       data={{
-        labels: ['Red', 'Blue', 'Yellow', 'Green'],
+        labels,
         datasets: [{
           label: '# of Votes',
-          data: [12, 19, 3, 5],
+          data,
         }],
       }}
       width={Number(`${100}%`)}
