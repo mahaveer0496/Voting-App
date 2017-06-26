@@ -54,7 +54,7 @@ pollRoutes.route('/:pollId')
           .then(() => {
             user.polls = user.polls.filter(id => id != pollId);
             user.save();
-            return res.redirect('/api/user/userPolls');
+            return res.redirect(303, '/api/user/userPolls');
           })
           .catch(() => res.json({ message: 'Poll with given title does not exist' }));
       })
@@ -64,7 +64,6 @@ pollRoutes.route('/:pollId')
 pollRoutes.route('/:pollId/:topicId')
   .post((req, res) => {
     const { pollId, topicId } = req.params;
-    // res.send({ pollId, topicId });
     Poll.findById(pollId).then((poll) => {
       poll.topics.map((topic) => {
         if (topic._id == topicId) {

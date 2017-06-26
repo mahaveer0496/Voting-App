@@ -31,7 +31,6 @@ userRoutes.route('/register')
     })(req, res, next);
   });
 
-
 userRoutes.route('/login')
 .post((req, res, next) => {
   passport.authenticate('local-login', (err, user, info) => {
@@ -57,13 +56,11 @@ userRoutes.route('/dashboard')
   });
 
 userRoutes.route('/userPolls')
-  .all(authMiddleware)
-  .get((req, res) => {
+  .get(authMiddleware, (req, res) => {
     User.findById(req.user._id).populate('polls').exec((error, user) => {
       if (error) return res.send(error);
       return res.send(user);
     });
   });
-
 
 module.exports = userRoutes;
