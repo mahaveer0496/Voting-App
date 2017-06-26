@@ -38,7 +38,7 @@ pollRoutes.route('/:pollId')
     const { pollId } = req.params;
     const { title } = req.body;
     Poll.findById(pollId).then((poll) => {
-      poll.topics.push({
+      poll.pollTopics.push({
         title,
         votes: 0,
       });
@@ -65,7 +65,7 @@ pollRoutes.route('/:pollId/:topicId')
   .post((req, res) => {
     const { pollId, topicId } = req.params;
     Poll.findById(pollId).then((poll) => {
-      poll.topics.map((topic) => {
+      poll.pollTopics.map((topic) => {
         if (topic._id == topicId) {
           topic.votes += 1;
         }
