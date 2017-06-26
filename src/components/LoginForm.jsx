@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { logUser } from './../redux/actions/logUserIn';
 
-const LoginForm = ({ logUser, isAuthenticated, history }) => {
+const LoginForm = ({ logUser, history }) => {
   let email = null;
   let password = null;
   const submitHandler = (event) => {
@@ -40,9 +40,7 @@ const LoginForm = ({ logUser, isAuthenticated, history }) => {
   );
 };
 
-const mapStateToProps = ({ isAuthenticated }) => ({ isAuthenticated });
-
 const mapDispatchToProps = dispatch => ({
   logUser: (email, password) => dispatch(logUser(email, password)),
 });
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

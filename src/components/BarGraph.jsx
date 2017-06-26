@@ -5,17 +5,31 @@ const BarGraph = () => {
   console.log('bar');
   return (
     <Bar
-      width={Number(`${100}%`)}
-      height={300}
       data={{
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange', 'boob', 'shoob', 'noob', 'loob', 'toob', 'lodwjao'],
+        labels: ['Red', 'Blue', 'Yellow', 'Green'],
         datasets: [{
           label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3, 12, 25, 176, 23, 12],
-          backgroundColor: [
-            'red', 'green', 'yellow', 'blue', 'red', 'green', 'yellow', 'blue', 'red', 'green', 'yellow', 'blue', 'red', 'green', 'yellow', 'blue',
-          ],
+          data: [12, 19, 3, 5],
         }],
+      }}
+      width={Number(`${100}%`)}
+      height={300}
+      options={{
+        responsive: true,
+        tooltips: { mode: 'label' },
+        maintainAspectRatio: false,
+        scales: {
+          xAxes: [{
+            gridLines: {
+              display: false,
+            },
+          }],
+          yAxes: [{
+            gridLines: {
+              display: false,
+            },
+          }],
+        },
       }}
     />
   );

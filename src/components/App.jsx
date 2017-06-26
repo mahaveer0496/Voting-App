@@ -26,6 +26,7 @@ class App extends Component {
 
   render() {
     const { isAuthenticated } = this.props;
+    console.log(isAuthenticated);
     return (
       <div>
         <Navigation isAuthenticated={isAuthenticated} />
@@ -42,7 +43,7 @@ class App extends Component {
 }
 
 
-const mapStateToProps = ({ isAuthenticated }) => ({ isAuthenticated });
+const mapStateToProps = ({ pollAndAuth }) => ({ isAuthenticated: pollAndAuth.isAuthenticated });
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(getUser()),
