@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import BarGraph from './BarGraph';
 
 class Dashboard extends Component {
   constructor(props) {
@@ -45,7 +46,9 @@ class Dashboard extends Component {
             ))}
 
           </div>
-          {/* <div className="col-6" ></div>*/}
+          <div className="col-6" >
+            <BarGraph />
+          </div>
         </div>
       </div>
     );

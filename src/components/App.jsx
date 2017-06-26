@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
-
+import axios from 'axios';
 // components----
 import PollAndItsForm from './PollAndItsForm';
 import TopicsAndItsForm from './TopicsAndItsForm';
@@ -18,6 +18,9 @@ class App extends Component {
     super(props);
   }
   componentDidMount() {
+    axios.get('https://ipinfo.io/json').then((res) => {
+      console.log(res.data.ip);
+    });
     this.props.getUser();
   }
 
