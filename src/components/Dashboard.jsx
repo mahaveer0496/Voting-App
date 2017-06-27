@@ -4,19 +4,9 @@ import axios from 'axios';
 
 import BarGraph from './BarGraph';
 
-const setLabels = (userPolls) => {
-  console.log(userPolls);
-  const labels = userPolls[0].pollTopics.map(topic => topic.title);
-  console.log(labels);
-  return labels;
-};
+const setLabels = currentPoll => currentPoll.pollTopics.map(topic => topic.title);
 
-const setData = (userPolls) => {
-  console.log(userPolls);
-  const data = userPolls[0].pollTopics.map(topic => topic.votes);
-  console.log(data);
-  return data;
-};
+const setData = currentPoll => currentPoll.pollTopics.map(topic => topic.votes);
 
 class Dashboard extends Component {
   constructor(props) {
@@ -26,21 +16,29 @@ class Dashboard extends Component {
       text: 'Text',
       labels: [],
       data: [],
+      currentPoll: [],
     };
     axios.get('/api/user/userPolls').then((res) => {
       this.setState({
         userPolls: res.data.polls,
-        labels: setLabels(res.data.polls),
-        data: setData(res.data.polls),
+        text: res.data.polls[0].pollTitle,
+        labels: setLabels(res.data.polls[0]),
+        data: setData(res.data.polls[0]),
       });
     });
     this.deletePoll = this.deletePoll.bind(this);
-    this.setText = this.setText.bind(this);
+    this.setPoll = this.setPoll.bind(this);
   }
 
-  setText(text) {
+  setPoll(text, currentPoll) {
     this.setState({
       text,
+      currentPoll,
+    }, () => {
+      this.setState({
+        labels: setLabels(this.state.currentPoll),
+        data: setData(this.state.currentPoll),
+      });
     });
   }
 
@@ -49,8 +47,9 @@ class Dashboard extends Component {
     axios.delete(`/api/poll/${pollId}`).then((res) => {
       this.setState({
         userPolls: res.data.polls,
-      }, () => {
-        setLabels(this.state.userPolls);
+        text: res.data.polls[0].pollTitle,
+        labels: setLabels(res.data.polls[0]),
+        data: setData(res.data.polls[0]),
       });
     });
   }
@@ -65,7 +64,7 @@ class Dashboard extends Component {
           <div className="col-6" >
             {userPolls.map(poll => (
               <div key={poll._id} >
-                <span onClick={() => { this.setText(poll.pollTitle); }}>{poll.pollTitle}</span>
+                <span onClick={() => { this.setPoll(poll.pollTitle, poll); }}>{poll.pollTitle}</span>
                 <button onClick={() => this.deletePoll(poll._id)} >Delete</button>
               </div>
             ))}

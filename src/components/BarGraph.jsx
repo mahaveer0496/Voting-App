@@ -1,9 +1,9 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarGraph = ({ labels, data }) => {
+const BarGraph = ({ labels, data }) =>
   // console.log('bar');
-  return (
+  (
     <Bar
       data={{
         labels,
@@ -12,12 +12,12 @@ const BarGraph = ({ labels, data }) => {
           data,
         }],
       }}
-      width={Number(`${100}%`)}
+      width={500}
       height={300}
       options={{
         responsive: true,
         tooltips: { mode: 'label' },
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
         scales: {
           xAxes: [{
             gridLines: {
@@ -25,6 +25,9 @@ const BarGraph = ({ labels, data }) => {
             },
           }],
           yAxes: [{
+            ticks: {
+              beginAtZero: true,
+            },
             gridLines: {
               display: false,
             },
@@ -33,6 +36,5 @@ const BarGraph = ({ labels, data }) => {
       }}
     />
   );
-};
 
 export default BarGraph;
