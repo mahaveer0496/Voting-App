@@ -28,6 +28,11 @@ class TopicsAndItsForms extends Component {
         ip: `${ipRes.data.ip}`,
       }).then((res) => {
         console.log(res.data);
+        if (res.data.pollTopics) {
+          this.setState({
+            pollTopics: res.data.pollTopics,
+          });
+        }
       });
     });
   }

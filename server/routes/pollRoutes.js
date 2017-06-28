@@ -76,17 +76,31 @@ pollRoutes.route('/:pollId/:topicId')
               hasVoted: true,
             });
             createdIp.save();
-            res.send(createdIp);
+            Poll.findById(pollId).then((poll) => {
+              poll.pollTopics.map((topic) => {
+                if (topic._id == topicId) topic.votes += 1;
+                return topic;
+              });
+              poll.save();
+              res.send(poll);
+            });
           });
         } else {
           const index = singleIP.topics.findIndex(topic => topic.topicId == topicId);
-          if (index == -1) {
+          if (index === -1) {
             singleIP.topics.push({
               topicId,
               hasVoted: true,
             });
             singleIP.save();
-            res.send('voted successfuly');
+            Poll.findById(pollId).then((poll) => {
+              poll.pollTopics.map((topic) => {
+                if (topic._id == topicId) topic.votes += 1;
+                return topic;
+              });
+              poll.save();
+              res.send(poll);
+            });
           } else {
             res.send('can only vote once per topic');
           }
