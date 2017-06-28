@@ -29,13 +29,20 @@ class App extends Component {
     return (
       <div>
         <Navigation isAuthenticated={isAuthenticated} />
-        <Switch>
-          <Route exact path="/" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
-          <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegisterForm} />
-          {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
-        </Switch>
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-8">
+              <Switch>
+                <Route exact path="/" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
+                <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
+                <Route path="/login" component={LoginForm} />
+                <Route path="/register" component={RegisterForm} />
+                {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
+              </Switch>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }
