@@ -18,9 +18,6 @@ class App extends Component {
     super(props);
   }
   componentDidMount() {
-    // axios.get('https://ipinfo.io/json').then((res) => {
-    //   console.log(res.data.ip);
-    // });
     this.props.getUser();
   }
 

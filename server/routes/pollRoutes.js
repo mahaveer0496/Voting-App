@@ -2,6 +2,7 @@ const express = require('express');
 const authMiddleware = require('./../authMiddleware');
 const Poll = require('./../models/PollModel');
 const User = require('./../models/UserModel');
+const Ip = require('./../models/IpModel');
 
 const pollRoutes = express.Router();
 
@@ -64,16 +65,52 @@ pollRoutes.route('/:pollId')
 pollRoutes.route('/:pollId/:topicId')
   .post((req, res) => {
     const { pollId, topicId } = req.params;
-    Poll.findById(pollId).then((poll) => {
-      poll.pollTopics.map((topic) => {
-        if (topic._id == topicId) {
-          topic.votes += 1;
+    // const { ip } = req.body;
+    const ip = '2';
+    Ip.findOne({ ip })
+      .then((singleIP) => {
+        if (!singleIP) {
+          Ip.create({ ip }).then((createdIp) => {
+            createdIp.topics.push({
+              topicId,
+              hasVoted: true,
+            });
+            createdIp.save();
+            res.send(createdIp);
+          });
+        } else {
+          const index = singleIP.topics.findIndex(topic => topic.topicId == topicId);
+          if (index == -1) {
+            singleIP.topics.push({
+              topicId,
+              hasVoted: true,
+            });
+            singleIP.save();
+            res.send('voted successfuly');
+          } else {
+            res.send('can only vote once per topic');
+          }
         }
-        return topic;
-      });
-      poll.save();
-      res.send(poll);
-    });
+      })
+      .catch(err => res.send(err));
   });
 
 module.exports = pollRoutes;
+
+//  return singleIP;
+//       })
+//       .then((IpData) => {
+//         const filteredArr = IpData.topics.filter((topic) => {
+//           if (topic.topicId == topicId) return false;
+//           return true;
+//         });
+
+//         if (filteredArr.length === 0) {
+//           IpData.topics.push({
+//             topic: topicId,
+//             hasVoted: true,
+//           });
+//           IpData.save();
+//           return res.send(filteredArr);
+//         }
+//         return res.send('can only vote once per topic');

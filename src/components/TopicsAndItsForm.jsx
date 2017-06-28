@@ -21,10 +21,13 @@ class TopicsAndItsForms extends Component {
   }
 
   increaseVotes(pollId, topicId) {
-    // console.log(pollId, topicId);
-    axios.post(`http://localhost:3000/api/poll/${pollId}/${topicId}`).then((res) => {
-      this.setState({
-        pollTopics: res.data.pollTopics,
+    const req1 = axios.get('https://ipinfo.io/json');
+    req1.then((ipRes) => {
+      console.log(ipRes.data.ip);
+      axios.post(`http://localhost:3000/api/poll/${pollId}/${topicId}`, {
+        ip: `${ipRes.data.ip}`,
+      }).then((res) => {
+        console.log(res.data);
       });
     });
   }
