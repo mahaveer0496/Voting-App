@@ -3926,6 +3926,10 @@ react-dom@^15.6.1:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
+react-flip-move@^2.9.14:
+  version "2.9.14"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-2.9.14.tgz#3b60e44493a4bbe115a8c3d678b844776bbab453"
+
 react-redux@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.5.tgz#f8e8c7b239422576e52d6b7db06439469be9846a"
