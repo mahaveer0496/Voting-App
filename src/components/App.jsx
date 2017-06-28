@@ -12,13 +12,16 @@ import Dashboard from './Dashboard';
 
 // actions-----
 import { getUser } from './../redux/actions/getUser';
+import { fetchIp } from './../redux/actions/getIp';
 
 class App extends Component {
   constructor(props) {
     super(props);
   }
   componentDidMount() {
-    this.props.getUser();
+    const { fetchIp, getUser } = this.props;
+    fetchIp();
+    getUser();
   }
 
   render() {
@@ -43,6 +46,7 @@ const mapStateToProps = ({ pollAndAuth }) => ({ isAuthenticated: pollAndAuth.isA
 
 const mapDispatchToProps = dispatch => ({
   getUser: () => dispatch(getUser()),
+  fetchIp: () => dispatch(fetchIp()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

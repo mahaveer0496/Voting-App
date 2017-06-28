@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import AddTopicForm from './AddTopicForm';
 import PollTopics from './PollTopics';
 
-import { withRouter } from 'react-router-dom';
 class TopicsAndItsForms extends Component {
   constructor(props) {
     super(props);
@@ -21,19 +22,17 @@ class TopicsAndItsForms extends Component {
   }
 
   increaseVotes(pollId, topicId) {
-    const req1 = axios.get('https://ipinfo.io/json');
-    req1.then((ipRes) => {
-      console.log(ipRes.data.ip);
-      axios.post(`http://localhost:3000/api/poll/${pollId}/${topicId}`, {
-        ip: `${ipRes.data.ip}`,
-      }).then((res) => {
-        console.log(res.data);
-        if (res.data.pollTopics) {
-          this.setState({
-            pollTopics: res.data.pollTopics,
-          });
-        }
-      });
+    const { ip } = this.props;
+    axios.post(`http://localhost:3000/api/poll/${pollId}/${topicId}`, {
+      ip,
+    }).then((res) => {
+      if (res.data.pollTopics) {
+        this.setState({
+          pollTopics: res.data.pollTopics,
+        });
+      } else {
+        alert(res.data);
+      }
     });
   }
 
@@ -67,4 +66,6 @@ class TopicsAndItsForms extends Component {
   }
 }
 
-export default withRouter(TopicsAndItsForms);
+const mapStateToProps = ({ ip }) => ({ ip: ip.ip });
+
+export default withRouter(connect(mapStateToProps, null)(TopicsAndItsForms));

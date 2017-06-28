@@ -12,14 +12,23 @@ export const REGISTER_USER = 'REGISTER_USER';
 export const REGISTER_USER_SUCCESS = 'REGISTER_USER_SUCCESS';
 export const REGISTER_USER_FAIL = 'REGISTER_USER_FAIL';
 
+
 export const LOG_USER_OUT = 'LOG_USER_OUT';
+
 
 export const ADD_POLL = 'ADD_POLL';
 export const ADD_POLL_SUCCESS = 'ADD_POLL_SUCCESS';
 export const ADD_POLL_FAIL = 'ADD_POLL_FAIL';
 
+
 export const ADD_POLL_TOPIC = 'ADD_POLL_TOPIC';
 export const ADD_POLL_TOPIC_SUCCESS = 'ADD_POLL_TOPIC_SUCCESS';
 export const ADD_POLL_TOPIC_FAIL = 'ADD_POLL_TOPIC_FAIL';
 
-export const GET_DATA_FOR_BAR = 'GET_DATA_FOR_BAR';
+
+export const GET_DATA_FOR_BAR_GRAPH = 'GET_DATA_FOR_BAR_GRAPH';
+
+
+export const GET_IP = 'GET_IP';
+export const GET_IP_SUCCESS = 'GET_IP_SUCCESS';
+export const GET_IP_FAIL = 'GET_IP_FAIL';
