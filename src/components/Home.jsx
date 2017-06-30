@@ -1,4 +1,11 @@
 import React from 'react';
+import ScrollArea from 'react-scrollbar';
+
+const reactLogo = require('./../img/react.svg');
+const reduxLogo = require('./../img/redux.svg');
+const mongoLogo = require('./../img/mongo.svg');
+const nodeLogo = require('./../img/node.svg');
+
 
 const Home = () => (
   <div className="home">
@@ -19,33 +26,63 @@ const Home = () => (
     </div>
     </section>
     <div className="space__creator" />
+    <p className="section__middle-heading">
+      Created using
+    </p>
     <section className="section__middle">
-      <p className="section__middle-heading">
-        Created using
-      </p>
-
       <div className="card__container">
-
         <div className="card card-react">
-          this is a card
-      </div>
+          <div className="card-img">
+            <img src={reactLogo} alt="React Logo" width={200} height={100} />
+          </div>
+          <div className="card-text">
+            <p>
+              Bla bla bla bla  Bla bla bla bla Bla bla bla bla
+            </p>
+          </div>
+        </div>
 
         <div className="card card-redux">
-          this is a card
-      </div>
+          <div className="card-img">
+            <img src={reduxLogo} alt="React Logo" width={200} height={100} />
+          </div>
+          <div className="card-text">
+            <p>
+              Bla bla bla bla  Bla bla bla bla Bla bla bla bla
+            </p>
+          </div>
+        </div>
 
         <div className="card card-mongo">
-          this is a card
-      </div>
+          <div className="card-img">
+            <img src={mongoLogo} alt="React Logo" width={200} height={100} />
+          </div>
+          <div className="card-text">
+            <p>
+              Bla bla bla bla  Bla bla bla bla Bla bla bla bla
+            </p>
+          </div>
+        </div>
 
         <div className="card card-node">
-          this is a card
-      </div>
+          <div className="card-img">
+            <img src={nodeLogo} alt="React Logo" width={200} height={100} />
+          </div>
+          <div className="card-text">
+            <p>
+              Bla bla bla bla  Bla bla bla bla Bla bla bla bla
+          </p>
+          </div>
+        </div>
       </div>
     </section>
-    <div className="space__creator" />
 
+    <section className="section__bottom">
+      <div className="space__creator" />
+      <p className="section__bottom-heading">
+        Easily share on popular sites
+      </p>
+    </section>
   </div>
 );
-
 export default Home;

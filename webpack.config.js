@@ -26,6 +26,10 @@ const config = {
       test: /\.css$/,
       loaders: ['style-loader', 'css-loader'],
     },
+    {
+      test: /\.svg$/,
+      loaders: ['file-loader'],
+    },
     ],
   },
   devtool: 'source-map',
