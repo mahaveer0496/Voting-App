@@ -8,7 +8,7 @@ import App from './components/App';
 import store from './redux/reducer';
 
 import './styles/stylesheets/bootstrap.min.css';
-
+import './styles/main.scss';
 
 render(
   <Provider store={store}>

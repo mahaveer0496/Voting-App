@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
 
 // components----
+import Home from './Home';
 import PollAndItsForm from './PollAndItsForm';
 import TopicsAndItsForm from './TopicsAndItsForm';
 import Navigation from './Navbar';
@@ -32,7 +33,8 @@ class App extends Component {
       <div>
         <Navigation isAuthenticated={isAuthenticated} />
         <Switch>
-          <Route exact path="/" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
+          <Route exact path="/" component={Home}/>
+          <Route path="/poll" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
           <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
           <Route path="/login" component={LoginForm} />
           <Route path="/register" component={RegisterForm} />

@@ -1,0 +1,107 @@
+.home {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.section__top {
+  height: 400px;
+  background-color: #303848;
+  color: white;
+  position: relative;
+}
+
+.heading_and_button_container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+}
+
+.section__top-heading {
+  font-size: 60px;
+  margin-bottom: 30px;
+}
+
+.section__top-blue-text {
+  color: #279BC2;
+}
+
+.count {
+  position: absolute;
+  bottom: -25px;
+  background-color: #D73F3F;
+  height: 50px;
+  line-height: 50px;
+  width: 170px;
+  border-radius: 44px;
+  text-align: center;
+  box-shadow: 0 7px 25px rgba(1, 1, 1, .6)
+}
+
+.count-topics {
+  left: 30px;
+}
+
+.count-votes {
+  right: 30px;
+}
+
+.button {
+  width: 170px;
+  height: 50px;
+  line-height: 50px;
+  font-size: 20px;
+  border-radius: 44px;
+  background: none;
+  outline: none;
+  color: white;
+}
+
+.button-cta {
+  margin-top: 10px;
+  border: 2px solid #279BC2;
+}
+
+.space__creator {
+  height: 50px;
+}
+
+.section__middle {
+  margin-top: 30px;
+}
+
+.section__middle-heading {
+  text-align: center;
+  font-size: 40px;
+}
+
+.card__container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.card {
+  width: 30%;
+  height: 250px;
+  margin-right: 40px;
+  box-shadow: 0 5px 25px rgba(1, 1, 1, .3);
+}
+
+.card-react {
+  border-top: 2px solid #279BC2;
+}
+
+.card-redux {
+  border-top: 2px solid purple;
+}
+
+.card-mongo {
+  border-top: 2px solid red;
+}
+.card-node{
+  border-top: 2px solid green;
+  margin-right: 0;
+}
