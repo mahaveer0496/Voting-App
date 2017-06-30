@@ -1,5 +1,5 @@
 import React from 'react';
-import ScrollArea from 'react-scrollbar';
+import FontAwesome from 'react-fontawesome';
 
 const reactLogo = require('./../img/react.svg');
 const reduxLogo = require('./../img/redux.svg');
@@ -82,6 +82,11 @@ const Home = () => (
       <p className="section__bottom-heading">
         Easily share on popular sites
       </p>
+      <div className="icons__container">
+        <div className="icon icon-fb"><FontAwesome name="facebook" /> </div>
+        <div className="icon icon-gp"><FontAwesome name="google-plus" /> </div>
+        <div className="icon icon-tw"><FontAwesome name="twitter" /> </div>
+      </div>
     </section>
   </div>
 );
