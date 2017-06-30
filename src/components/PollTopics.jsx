@@ -2,19 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
 import { Link } from 'react-router-dom';
+import FontAwesome from 'react-fontawesome';
 
 const PollTopics = ({ pollTopics, increaseVotes, pollId }) => {
   return (
-    <div>
+    <ul className="list-group">
       {pollTopics.map(topic => (
-        <div key={topic._id}>
+        <li className="list-group-item d-flex justify-content-between" key={topic._id}>
           <span>{topic.title}</span>
           <progress value={topic.votes} max={50} key={topic._id} />
-          <button onClick={() => { increaseVotes(pollId, topic._id); }}>Vote for this!</button>
-        </div>
+          <FontAwesome
+            name="thumbs-up"
+            size="2x"
+            onClick={() => { increaseVotes(pollId, topic._id); }} />
+        </li>
       ))}
 
-    </div>
+    </ul>
   );
 };
 

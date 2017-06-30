@@ -12,14 +12,23 @@ const AddTopicForm = ({ pollId, addNewTopic }) => {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="topicTitle"
-          ref={(input) => { topicTitle = input; }}
-          placeholder="Add new topic"
-        />
-        <input type="submit" />
+      <form className="justify-content-center form-inline" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            className="form-control"
+            type="text"
+            name="topicTitle"
+            ref={(input) => { topicTitle = input; }}
+            placeholder="Add new topic"
+          />
+        </div>
+
+        <div className="form-group">
+          <input
+            className="btn btn-outline-primary"
+            type="submit" />
+
+        </div>
       </form>
     </div>
   );

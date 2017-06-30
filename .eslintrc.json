@@ -4,5 +4,13 @@
         "react",
         "jsx-a11y",
         "import"
-    ]
+    ],
+    "rules": {
+        "no-underscore-dangle": 0,
+        "react/jsx-closing-bracket-location": 0,
+        "no-console": 0
+    },
+    "env": {
+        "browser": true
+    }
 }

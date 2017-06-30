@@ -63,9 +63,9 @@ class Dashboard extends Component {
         <div className="row">
           <div className="col-6" >
             {userPolls.map(poll => (
-              <div key={poll._id} >
+              <div className="list-group-item d-flex justify-content-between" key={poll._id} >
                 <span onClick={() => { this.setPoll(poll.pollTitle, poll); }}>{poll.pollTitle}</span>
-                <button onClick={() => this.deletePoll(poll._id)} >Delete</button>
+                <button className="btn btn-danger btn-sm" onClick={() => this.deletePoll(poll._id)} >Delete</button>
               </div>
             ))}
 

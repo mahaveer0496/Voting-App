@@ -15,7 +15,9 @@ const PollTitles = ({ polls }) => (
           key={poll._id}>
           {poll.pollTitle}
           <Link to={`/poll/${poll._id}`}>
-            <FontAwesome name="arrow"/>
+            <FontAwesome
+              name="external-link"
+              style={{ color: 'black' }} />
           </Link></li>
       ))}
     </ul>

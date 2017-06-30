@@ -4,17 +4,28 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 import AddTopicForm from './AddTopicForm';
 import PollTopics from './PollTopics';
+import BarGraph from './BarGraph';
+
+
+const setLabels = currentPoll => currentPoll.pollTopics.map(topic => topic.title);
+
+const setData = currentPoll => currentPoll.pollTopics.map(topic => topic.votes);
+
 
 class TopicsAndItsForms extends Component {
   constructor(props) {
     super(props);
     this.state = {
       pollTopics: [],
+      labels: [],
+      data: [],
     };
     axios.get(`http://localhost:3000/api/poll/${this.props.match.params.pollId}`).then((res) => {
-      // console.log(res.data.poll);
+      console.log(res.data);
       this.setState({
         pollTopics: res.data.pollTopics,
+        labels: setLabels(res.data),
+        data: setData(res.data),
       });
     });
     this.increaseVotes = this.increaseVotes.bind(this);
@@ -29,6 +40,8 @@ class TopicsAndItsForms extends Component {
       if (res.data.pollTopics) {
         this.setState({
           pollTopics: res.data.pollTopics,
+          labels: setLabels(res.data),
+        data: setData(res.data),
         });
       } else {
         alert(res.data);
@@ -42,25 +55,35 @@ class TopicsAndItsForms extends Component {
     }).then((res) => {
       this.setState({
         pollTopics: res.data.pollTopics,
+        labels: setLabels(res.data),
+        data: setData(res.data),
       });
     });
   }
   render() {
     const { pollId } = this.props.match.params;
-    const { pollTopics } = this.state;
+    const { pollTopics, labels, data } = this.state;
     const { isAuthenticated } = this.props;
     // console.log(pollId);
     return (
-      <div>
-        {isAuthenticated && <AddTopicForm
-          pollId={pollId}
-          addNewTopic={this.addNewTopic}
-        />}
-        <PollTopics
-          pollTopics={pollTopics}
-          pollId={pollId}
-          increaseVotes={this.increaseVotes}
-        />
+      <div className="container">
+        {isAuthenticated &&
+          <AddTopicForm
+            pollId={pollId}
+            addNewTopic={this.addNewTopic}
+          />}
+        <div className="row">
+          <div className="col-md-6">
+            <PollTopics
+              pollTopics={pollTopics}
+              pollId={pollId}
+              increaseVotes={this.increaseVotes}
+            />
+          </div>
+          <div className="col-md-6">
+            <BarGraph labels={labels} data={data} />
+          </div>
+        </div>
       </div>
     );
   }

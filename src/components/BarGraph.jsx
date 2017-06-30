@@ -1,17 +1,34 @@
 import React from 'react';
 import { Bar } from 'react-chartjs-2';
 
-const BarGraph = ({ labels, data }) =>
-  // console.log('bar');
-  (
+const generateColors = (length) => {
+  const colorArr = [];
+  const color = '01bcdaf284e';
+  const arr = color.split('');
+  for (let i = 0; i < length; i++) {
+    const colorString = [];
+    for (let j = 0; j < 6; j++) {
+      colorString.push(arr[parseInt((Math.random() * 6), 10)]);
+    }
+    colorArr.push(`#${colorString.join('')}`);
+  }
+  return colorArr;
+};
+
+
+const BarGraph = ({ labels, data }) => {
+  const dataObj = {
+    labels,
+    datasets: [{
+      label: '# of Votes',
+      data,
+      backgroundColor: generateColors(labels.length),
+      borderColor: generateColors(labels.length),
+    }],
+  };
+  return (
     <Bar
-      data={{
-        labels,
-        datasets: [{
-          label: '# of Votes',
-          data,
-        }],
-      }}
+      data={dataObj}
       width={500}
       height={300}
       options={{
@@ -36,5 +53,18 @@ const BarGraph = ({ labels, data }) =>
       }}
     />
   );
+};
+
 
 export default BarGraph;
+
+// data={{
+//         labels,
+//         datasets: [{
+//           label: '# of Votes',
+//           data,
+//           backgroundColor: ['rgba(75,192,192,1)', 'blue'],
+//           borderColor: ['rgba(75,192,192,1)', 'blue'],
+//         }],
+//       }}
+
