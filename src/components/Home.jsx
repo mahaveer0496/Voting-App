@@ -7,15 +7,17 @@ const mongoLogo = require('./../img/mongo.svg');
 const nodeLogo = require('./../img/node.svg');
 
 
-const Home = () => (
+const Home = ({ history }) => (
   <div className="home">
     <section className="section__top">
       <div className="heading_and_button_container">
         <p className="section__top-heading">
           <span className="section__top-blue-text">Votes</span> that matters</p>
-        <button className="button button-cta">
+        <button
+          onClick={() => { history.replace('/poll'); }}
+          className="button button-cta">
           Vote now
-    </button>
+        </button>
 
       </div>
       <div className="count count-topics">
