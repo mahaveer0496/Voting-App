@@ -4,38 +4,44 @@ import { Link, withRouter } from 'react-router-dom';
 
 import { logOut } from './../redux/actions/logUserOut';
 
-const Navigation = ({ logOut, isAuthenticated, history }) => (
-  <nav className="navbar navbar-toggleable-sm navbar-inverse bg-inverse">
-    <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon" />
-    </button>
-    <Link className="navbar-brand" to="/">Home</Link>
-
-    <div className="collapse navbar-collapse justify-content-end" id="navbar" >
+const Navigation = ({ logOut, isAuthenticated, history }) => {
+  let nav = null;
+  window.addEventListener('scroll', () => {
+    const offSet = window.pageYOffset;
+    if (offSet > 0) {
+      nav.classList.add('scroll');
+    } else {
+      nav.classList.remove('scroll');
+    }
+  });
+  return (
+    <nav className="navbar" ref={ref => nav = ref}>
+      <Link className="navbar-brand" to="/">Voting App</Link>
       {!isAuthenticated &&
-        <ul className="navbar-nav ">
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">Sign-Up</Link>
+        <ul className="navbar__right">
+          <li >
+            <Link to="/register">Sign-Up</Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">Login</Link>
+          <li >
+            <Link to="/login">Login</Link>
           </li>
         </ul>}
       {isAuthenticated &&
-        <ul className="navbar-nav ">
-          <li className="nav-item">
-            <Link className="nav-link" to="/dashboard">Dashboard</Link>
+        <ul className="navbar__right">
+          <li >
+            <Link to="/dashboard">Dashboard</Link>
           </li>
-          <li className="nav-item">
+          <li >
             <button
               onClick={() => logOut(history)}
-              className="btn btn-primary"
-            >Logout</button>
+              className="btn btn-primary">
+              Logout</button>
           </li>
         </ul>}
-    </div>
-  </nav>
-);
+
+    </nav>
+  );
+};
 
 const mapDispatchToProps = dispatch => ({
   logOut: history => dispatch(logOut(history)),

@@ -1,7 +1,15 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700");
 @import 'components/home';
+@import 'components/navbar';
 
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Source Sans Pro', sans-serif;
+  transition: all .2s;
+}
+a{
+  text-decoration: none;
+  color: white;
 }
