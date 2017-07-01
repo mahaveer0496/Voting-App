@@ -15,30 +15,32 @@ const Navigation = ({ logOut, isAuthenticated, history }) => {
     }
   });
   return (
-    <nav className="navbar" ref={ref => nav = ref}>
-      <Link className="navbar-brand" to="/">Voting App</Link>
-      {!isAuthenticated &&
-        <ul className="navbar__right">
-          <li >
-            <Link to="/register">Sign-Up</Link>
-          </li>
-          <li >
-            <Link to="/login">Login</Link>
-          </li>
-        </ul>}
-      {isAuthenticated &&
-        <ul className="navbar__right">
-          <li >
-            <Link to="/dashboard">Dashboard</Link>
-          </li>
-          <li >
-            <button
-              onClick={() => logOut(history)}
-              className="btn btn-primary">
-              Logout</button>
-          </li>
-        </ul>}
+    <nav className="outer__navbar" ref={ref => nav = ref}>
+      <div className="navbar">
+        <Link className="navbar-brand" to="/">Voting App</Link>
+        {!isAuthenticated &&
+          <ul className="navbar__right">
+            <li >
+              <Link to="/register">Sign-Up</Link>
+            </li>
+            <li >
+              <Link to="/login">Login</Link>
+            </li>
+          </ul>}
+        {isAuthenticated &&
+          <ul className="navbar__right">
+            <li >
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
+            <li >
+              <button
+                onClick={() => logOut(history)}
+                className="btn btn-primary">
+                Logout</button>
+            </li>
+          </ul>}
 
+      </div>
     </nav>
   );
 };

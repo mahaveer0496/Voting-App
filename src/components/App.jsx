@@ -32,14 +32,16 @@ class App extends Component {
     return (
       <div>
         <Navigation isAuthenticated={isAuthenticated} />
-        <Switch>
-          <Route exact path="/" component={Home}/>
-          <Route path="/poll" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
-          <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
-          <Route path="/login" component={LoginForm} />
-          <Route path="/register" component={RegisterForm} />
-          {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
-        </Switch>
+        <main>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/poll" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
+            <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
+            <Route path="/login" component={LoginForm} />
+            <Route path="/register" component={RegisterForm} />
+            {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
+          </Switch>
+        </main>
       </div>
     );
   }
