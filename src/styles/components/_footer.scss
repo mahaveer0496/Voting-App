@@ -1,0 +1,18 @@
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+  background-color: #303848;  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  letter-spacing: 2px;
+  font-size: 16px;
+  span{
+    color:red;
+  }
+}

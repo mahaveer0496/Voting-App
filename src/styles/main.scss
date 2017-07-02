@@ -3,12 +3,22 @@
 @import 'components/navbar';
 @import 'components/polltitles';
 @import 'components/loginform';
+@import 'components/footer';
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: 'Source Sans Pro', sans-serif;
   transition: all .2s;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
 }
 
 a {
@@ -18,6 +28,7 @@ a {
 
 main {
   margin: 60px auto;
+  margin-bottom: 0px;
   position: relative;
 }
 

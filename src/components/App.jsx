@@ -10,7 +10,7 @@ import Navigation from './Navbar';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import Dashboard from './Dashboard';
-
+import Footer from './Footer';
 // actions-----
 import { getUser } from './../redux/actions/getUser';
 import { fetchIp } from './../redux/actions/getIp';
@@ -42,6 +42,7 @@ class App extends Component {
             {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
           </Switch>
         </main>
+        <Footer />
       </div>
     );
   }

@@ -92,7 +92,7 @@ const Home = ({ history }) => (
     <div className="outer__home-bottom">
       <div className="inner__container">
         <div className="space__creator" />
-        <section className="section__bottom">          
+        <section className="section__bottom">
           <p className="section__bottom-heading">
             Easily share on popular sites
           </p>
@@ -104,10 +104,6 @@ const Home = ({ history }) => (
         </section>
       </div>
     </div>
-
-    
-
-
   </div>
 );
 export default Home;
