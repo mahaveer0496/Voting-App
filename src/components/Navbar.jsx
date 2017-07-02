@@ -8,10 +8,13 @@ const Navigation = ({ logOut, isAuthenticated, history }) => {
   let nav = null;
   window.addEventListener('scroll', () => {
     const offSet = window.pageYOffset;
-    if (offSet > 0) {
-      nav.classList.add('scroll');
-    } else {
-      nav.classList.remove('scroll');
+    if (nav) {
+      if (offSet > 0) {
+        nav.classList.add('scroll');
+      } else {
+        nav.classList.remove('scroll');
+      }
+
     }
   });
   return (
