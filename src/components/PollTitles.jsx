@@ -8,23 +8,27 @@ const dummyPolls = [
     pollTitle: ' this is title one',
     _id: '1233142',
     by: 'dave',
+    time: '12-02-2017'
   },
   {
     pollTitle: ' this is title twta',
     _id: '12231142',
     by: 'shave',
+    time: '12-02-2017'
   },
   {
     pollTitle: ' this is title three',
     _id: '1233dasd142',
     by: 'dawa',
+    time: '12-02-2017'
   }, {
     pollTitle: ' this is title four',
     _id: '123dazxc3142',
     by: '1ava',
+    time: '12-02-2017'
   },
 ];
-const PollTitles = ({ polls }) => (
+const PollTitles = ({ history }) => (
 
   <ul className="polls">
     {dummyPolls.map(poll => (
@@ -32,12 +36,16 @@ const PollTitles = ({ polls }) => (
         className="poll__title"
         key={poll._id}>
         <span className="title">{poll.pollTitle}</span>
-        <Link to={`/poll/${poll._id}`}>
-          <FontAwesome
-            name="external-link"
-            style={{ color: 'black' }} />
-        </Link>
-        <p>Created by <span className="author">{poll.by}</span></p>
+        <span className="link">
+          <Link to={`/poll/${poll._id}`}>
+            <FontAwesome
+              name="external-link"
+              style={{ color: 'black' }} />
+          </Link>
+
+        </span>
+        <p className="author">Created by <span>{poll.by}</span></p>
+        <p className="time">Created at <span>{poll.time}</span></p>
       </li>
     ))}
   </ul>

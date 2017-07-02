@@ -32,7 +32,7 @@ const Home = ({ history }) => (
       </div>
     </div>
     <div className="space__creator" />
-    
+
     <div className="outer__home-middle">
       <div className="inner__container">
         <p className="section__middle-heading">
@@ -91,6 +91,7 @@ const Home = ({ history }) => (
 
     <div className="outer__home-bottom">
       <div className="inner__container">
+        <div className="space__creator" />
         <section className="section__bottom">          
           <p className="section__bottom-heading">
             Easily share on popular sites
@@ -104,7 +105,7 @@ const Home = ({ history }) => (
       </div>
     </div>
 
-    <div className="space__creator" />
+    
 
 
   </div>

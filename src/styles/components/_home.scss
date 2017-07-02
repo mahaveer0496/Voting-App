@@ -107,6 +107,7 @@
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  border-radius: 4px;
 }
 
 .card-react {
@@ -131,6 +132,7 @@
   background-color: #f4f4f4;
   margin-top: 20px;
   padding: 10px 20px;
+  border-radius: 0 0 4px 4px;
 }
 
 .outer__home-bottom {
