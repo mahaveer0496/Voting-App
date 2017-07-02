@@ -12,10 +12,10 @@ const AddTopicForm = ({ pollId, addNewTopic }) => {
   };
   return (
     <div>
-      <form className="justify-content-center form-inline" onSubmit={handleSubmit}>
-        <div className="form-group">
+      <form className="list__item" onSubmit={handleSubmit}>
+        <div className="input__field">
           <input
-            className="form-control"
+            className="poll-text"
             type="text"
             name="topicTitle"
             ref={(input) => { topicTitle = input; }}

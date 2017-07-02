@@ -63,22 +63,26 @@ class Dashboard extends Component {
           <h1 className="dashboard-heading">
             {text}
           </h1>
-          <div className="dashboard__data-container">            
+          <div className="dashboard__data-container">
             <div className="dashboard__left" >
-              <AddPollForm />
-              {userPolls.map(poll => (
-                <div className="list__item" key={poll._id}>
-                  <span className="list__item-left" onClick={() => { this.setPoll(poll.pollTitle, poll); }}>
-                    {poll.pollTitle}
-                  </span>
-                  <span className="list__item-right">
-                    <button className="button-delete" onClick={() => this.deletePoll(poll._id)} >
-                      <FontAwesome name="minus" />
-                    </button>
-                  </span>
-                </div>
-              ))}
+              <div className="topics__left-outer-container">
+                <div className="topics__left-inner-container">
+                  <AddPollForm />
+                  {userPolls.map(poll => (
+                    <div className="list__item" key={poll._id}>
+                      <span className="list__item-left" onClick={() => { this.setPoll(poll.pollTitle, poll); }}>
+                        {poll.pollTitle}
+                      </span>
+                      <span className="list__item-right">
+                        <button className="button-delete" onClick={() => this.deletePoll(poll._id)} >
+                          <FontAwesome name="minus" />
+                        </button>
+                      </span>
+                    </div>
+                  ))}
 
+                </div>
+              </div>
             </div>
 
             <div className="dashboard__right" >

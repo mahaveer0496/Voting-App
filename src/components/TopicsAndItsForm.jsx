@@ -69,19 +69,24 @@ class TopicsAndItsForms extends Component {
       <div className="topics__page">
         <div className="inner__container">
           <div className="topics">
-            {isAuthenticated &&
-              <AddTopicForm
-                pollId={pollId}
-                addNewTopic={this.addNewTopic}
-              />}
 
             <div className="topics__container">
               <div className="topics__left">
-                <PollTopics
-                  pollTopics={pollTopics}
-                  pollId={pollId}
-                  increaseVotes={this.increaseVotes}
-                />
+                <div className="topics__left-outer-container">
+                  <div className="topics__left-inner-container">
+                    {isAuthenticated &&
+                      <AddTopicForm
+                        pollId={pollId}
+                        addNewTopic={this.addNewTopic}
+                      />}
+                    <PollTopics
+                      pollTopics={pollTopics}
+                      pollId={pollId}
+                      increaseVotes={this.increaseVotes}
+                    />
+
+                  </div>
+                </div>
               </div>
               <div className="topics__right">
                 <BarGraph labels={labels} data={data} />
