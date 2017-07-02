@@ -1,0 +1,16 @@
+.topics__page,
+.topics__left {
+  background: white;
+}
+
+.list__item-topics {
+  background: #f4f4f4;
+  color: black;
+  cursor: context-menu;
+  .list__item-right {
+    cursor: pointer;
+    .fa {
+      margin-left: auto;
+    }
+  }
+}

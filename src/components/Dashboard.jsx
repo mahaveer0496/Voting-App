@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import FontAwesome from 'react-fontawesome';
 
 import BarGraph from './BarGraph';
-
+import AddPollForm from './AddPollForm';
 const setLabels = currentPoll => currentPoll.pollTopics.map(topic => topic.title);
 
 const setData = currentPoll => currentPoll.pollTopics.map(topic => topic.votes);
@@ -56,25 +57,42 @@ class Dashboard extends Component {
   render() {
     const { userPolls, text, labels, data } = this.state;
     return (
-      <div className="container">
-        <h1 className="text-center">
-          {text}
-        </h1>
-        <div className="row">
-          <div className="col-6" >
-            {userPolls.map(poll => (
-              <div className="list-group-item d-flex justify-content-between" key={poll._id} >
-                <span onClick={() => { this.setPoll(poll.pollTitle, poll); }}>{poll.pollTitle}</span>
-                <button className="btn btn-danger btn-sm" onClick={() => this.deletePoll(poll._id)} >Delete</button>
+      <div className="dashboard">
+        <div className="inner__container">
+
+          <h1 className="dashboard-heading">
+            {text}
+          </h1>
+          <div className="dashboard__data-container">            
+            <div className="dashboard__left" >
+              <AddPollForm />
+              {userPolls.map(poll => (
+                <div className="list__item" key={poll._id}>
+                  <span className="list__item-left" onClick={() => { this.setPoll(poll.pollTitle, poll); }}>
+                    {poll.pollTitle}
+                  </span>
+                  <span className="list__item-right">
+                    <button className="button-delete" onClick={() => this.deletePoll(poll._id)} >
+                      <FontAwesome name="minus" />
+                    </button>
+                  </span>
+                </div>
+              ))}
+
+            </div>
+
+            <div className="dashboard__right" >
+              <div className="dashboard__right-chart">
+
+                <BarGraph labels={labels} data={data} />
               </div>
-            ))}
+
+
+            </div>
 
           </div>
-          <div className="col-6" >
-            <BarGraph labels={labels} data={data} />
-          </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

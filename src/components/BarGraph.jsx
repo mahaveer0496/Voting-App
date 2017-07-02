@@ -22,15 +22,14 @@ const BarGraph = ({ labels, data }) => {
     datasets: [{
       label: '# of Votes',
       data,
-      backgroundColor: generateColors(labels.length),
-      borderColor: generateColors(labels.length),
+      backgroundColor: 'rgb(40, 216, 178)',
     }],
   };
   return (
     <Bar
       data={dataObj}
-      width={500}
-      height={300}
+      width={100}
+      height={50}
       options={{
         responsive: true,
         tooltips: { mode: 'label' },

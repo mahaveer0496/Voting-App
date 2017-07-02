@@ -8,13 +8,14 @@ const PollTopics = ({ pollTopics, increaseVotes, pollId }) => {
   return (
     <ul className="list-group">
       {pollTopics.map(topic => (
-        <li className="list-group-item d-flex justify-content-between" key={topic._id}>
-          <span>{topic.title}</span>
-          <progress value={topic.votes} max={50} key={topic._id} />
-          <FontAwesome
-            name="thumbs-up"
-            size="2x"
-            onClick={() => { increaseVotes(pollId, topic._id); }} />
+        <li className="list__item list__item-topics" key={topic._id}>
+          <span className="list__item-left">{topic.title}</span>
+          <span className="list__item-right">
+            <FontAwesome
+              name="thumbs-up"
+              size="2x"
+              onClick={() => { increaseVotes(pollId, topic._id); }} />
+          </span>
         </li>
       ))}
 

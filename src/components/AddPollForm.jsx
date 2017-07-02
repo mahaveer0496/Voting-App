@@ -13,20 +13,18 @@ const AddPollForm = ({ handleUpdate }) => {
     pollTitle.value = '';
   };
   return (
-    <form className="form-inline" onSubmit={handleSubmit}>
-      <div className="form-group">
+    <form className="list__item" onSubmit={handleSubmit}>
+      <div className="input__field">
         <input
-          className="form-control"
+          className="poll-text"
           type="text"
           name="pollTitle"
           ref={(input) => { pollTitle = input; }}
-          placeholder="Enter poll name" />
+          placeholder="Enter new poll title" />
       </div>
 
-      <div className="form-group">
-        <input
-          className="btn btn-outline-primary"
-          type="submit" />
+      <div className="input__field">
+        <input className="btn" type="submit" />
       </div>
     </form>
   );

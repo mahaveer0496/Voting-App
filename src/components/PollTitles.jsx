@@ -39,28 +39,26 @@ const dummyPolls = [
   },
 ];
 const PollTitles = ({ history, polls }) => (
-  <div className="inner__container">
-    <ul className="polls">
-      {polls.map(poll => (
-        <li
-          className="poll__title"
-          key={poll._id}>
-          <span className="title">{poll.pollTitle}</span>
-          <span className="link">
-            <Link to={`/poll/${poll._id}`}>
-              <FontAwesome
-                name="external-link"
-                style={{ color: 'black' }} />
-            </Link>
 
-          </span>
-          <p className="author">Created by <span>{poll.by}</span></p>
-          <p className="time">Created at <span>{poll.time}</span></p>
-        </li>
-      ))}
-    </ul>
+  <ul className="polls">
+    {polls.map(poll => (
+      <li
+        className="poll__title"
+        key={poll._id}>
+        <span className="title">{poll.pollTitle}</span>
+        <span className="link">
+          <Link to={`/poll/${poll._id}`}>
+            <FontAwesome
+              name="external-link"
+              style={{ color: 'black' }} />
+          </Link>
 
-  </div>
+        </span>
+        <p className="author">Created by <span>{poll.by}</span></p>
+        <p className="time">Created at <span>{poll.time}</span></p>
+      </li>
+    ))}
+  </ul>
 
 );
 

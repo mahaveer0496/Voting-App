@@ -41,7 +41,7 @@ class TopicsAndItsForms extends Component {
         this.setState({
           pollTopics: res.data.pollTopics,
           labels: setLabels(res.data),
-        data: setData(res.data),
+          data: setData(res.data),
         });
       } else {
         alert(res.data);
@@ -66,22 +66,27 @@ class TopicsAndItsForms extends Component {
     const { isAuthenticated } = this.props;
     // console.log(pollId);
     return (
-      <div className="container">
-        {isAuthenticated &&
-          <AddTopicForm
-            pollId={pollId}
-            addNewTopic={this.addNewTopic}
-          />}
-        <div className="row">
-          <div className="col-md-6">
-            <PollTopics
-              pollTopics={pollTopics}
-              pollId={pollId}
-              increaseVotes={this.increaseVotes}
-            />
-          </div>
-          <div className="col-md-6">
-            <BarGraph labels={labels} data={data} />
+      <div className="topics__page">
+        <div className="inner__container">
+          <div className="topics">
+            {isAuthenticated &&
+              <AddTopicForm
+                pollId={pollId}
+                addNewTopic={this.addNewTopic}
+              />}
+
+            <div className="topics__container">
+              <div className="topics__left">
+                <PollTopics
+                  pollTopics={pollTopics}
+                  pollId={pollId}
+                  increaseVotes={this.increaseVotes}
+                />
+              </div>
+              <div className="topics__right">
+                <BarGraph labels={labels} data={data} />
+              </div>
+            </div>
           </div>
         </div>
       </div>
