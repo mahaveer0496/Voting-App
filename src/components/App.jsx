@@ -35,8 +35,8 @@ class App extends Component {
         <main>
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/poll" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
-            <Route path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
+            <Route exact path="/poll" render={() => <PollAndItsForm isAuthenticated={isAuthenticated} />} />
+            <Route exact path="/poll/:pollId" render={() => <TopicsAndItsForm isAuthenticated={isAuthenticated} />} />
             <Route path="/login" component={LoginForm} />
             <Route path="/register" component={RegisterForm} />
             {isAuthenticated ? <Route path="/dashboard" component={Dashboard} /> : <Redirect to="/" />}
